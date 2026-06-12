@@ -1,16 +1,97 @@
-# React + Vite
+# ITabid Tech Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Official source code for the ITabid Tech platform providing IT solutions and services.
 
-Currently, two official plugins are available:
+## 🚀 Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
 
-## React Compiler
+### Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Clone the repository
+git clone https://github.com/ahmedhsnabdalla-kayzin/itabid-tech.git
 
-## Expanding the ESLint configuration
+# Navigate to project directory
+cd itabid-tech
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## 📦 Build
+
+```bash
+npm run build
+```
+
+## 🧹 Linting
+
+```bash
+npm run lint
+```
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── Navbar/
+│   │   ├── Navbar.jsx
+│   │   └── Navbar.css
+│   ├── Hero/
+│   │   ├── Hero.jsx
+│   │   └── Hero.css
+│   ├── Services/
+│   │   ├── Services.jsx
+│   │   └── Services.css
+│   ├── Card/
+│   │   ├── Card.jsx
+│   │   └── Card.css
+│   └── Footer/
+│       ├── Footer.jsx
+│       └── Footer.css
+├── App.jsx
+├── App.css
+├── main.jsx
+└── index.css
+```
+
+## 🛠️ Technologies
+
+- **React 19.2.6** - UI library
+- **Vite** - Build tool and dev server
+- **ESLint** - Code quality and linting
+- **CSS3** - Styling with responsive design
+
+## 📝 Features
+
+- ✅ Responsive design (mobile-first)
+- ✅ Component-based architecture
+- ✅ Reusable Card component
+- ✅ Data-driven rendering
+- ✅ ESLint configuration for code quality
+- ✅ Modern React 19 with StrictMode
+
+## 🎯 Roadmap
+
+- [ ] Add TypeScript support
+- [ ] Implement routing with React Router
+- [ ] Add unit and integration tests
+- [ ] Create contact form with validation
+- [ ] Add portfolio section with filtering
+- [ ] Implement dark mode
+- [ ] Add API integration
+
+## 📄 License
+
+All Rights Reserved © 2026 ITabid Tech
+
+## 👤 Author
+
+Ahmed Hassan - [GitHub Profile](https://github.com/ahmedhsnabdalla-kayzin)
