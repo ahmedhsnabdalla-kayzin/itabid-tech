@@ -1,13 +1,557 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>itabid-tech-app</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITabid Technology — IT Solutions in Arabic & English</title>
+<meta name="description" content="ITabid Technology delivers web, mobile, network, and cloud IT solutions — fluently in Arabic and English.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Manrope:wght@500;700;800&family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10151C;
+    --sand:#F1EAD9;
+    --teal:#1F5C56;
+    --copper:#C97A3D;
+    --muted:#6B6459;
+    --line: rgba(16,21,28,0.12);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Inter', 'Cairo', sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  html[dir="rtl"] body{ font-family:'Cairo','Inter',sans-serif; }
+
+  /* language visibility */
+  .t-ar{display:none;}
+  html[dir="rtl"] .t-en{display:none;}
+  html[dir="rtl"] .t-ar{display:block;}
+  html[dir="rtl"] span.t-ar{display:inline;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--copper);
+    display:block;
+    margin-bottom:14px;
+  }
+  html[dir="rtl"] .eyebrow{ font-family:'Cairo',monospace; letter-spacing:0; }
+
+  h1,h2,h3{
+    font-family:'Manrope', sans-serif;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    line-height:1.12;
+  }
+  html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3{
+    font-family:'Cairo', sans-serif; font-weight:700; letter-spacing:0;
+  }
+  h2{ font-size:clamp(28px,4vw,42px); }
+  p{ color:var(--muted); }
+
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 28px; }
+  section{ padding:96px 0; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(241,234,217,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Manrope',sans-serif; font-weight:800; font-size:19px;
+    display:flex; align-items:center; gap:10px;
+  }
+  html[dir="rtl"] .logo{ font-family:'Cairo',sans-serif; }
+  .logo-mark{
+    width:30px; height:30px; border-radius:8px;
+    background:linear-gradient(135deg, var(--teal), var(--ink));
+    display:inline-flex; align-items:center; justify-content:center;
+    color:var(--sand); font-size:14px; font-weight:800;
+  }
+  .navlinks{ display:flex; gap:32px; align-items:center; }
+  .navlinks a{ font-size:14.5px; font-weight:600; color:var(--ink); opacity:.8; }
+  .navlinks a:hover{ opacity:1; color:var(--teal); }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .lang-toggle{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px; font-weight:600; letter-spacing:.04em;
+    border:1px solid var(--ink); border-radius:999px;
+    padding:8px 14px; cursor:pointer; background:transparent;
+    display:flex; align-items:center; gap:6px;
+  }
+  .lang-toggle:hover{ background:var(--ink); color:var(--sand); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ink); color:var(--sand);
+    padding:12px 22px; border-radius:999px;
+    font-weight:600; font-size:14.5px; border:1px solid var(--ink);
+    cursor:pointer; white-space:nowrap;
+  }
+  .btn:hover{ background:var(--copper); border-color:var(--copper); }
+  .btn.outline{ background:transparent; color:var(--ink); }
+  .btn.outline:hover{ background:var(--ink); color:var(--sand); }
+  @media(max-width:860px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 60px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr .9fr; gap:60px; align-items:center;
+  }
+  html[dir="rtl"] .hero-grid{ direction:rtl; }
+  @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+  .hero h1{ font-size:clamp(36px,5.4vw,58px); margin-bottom:22px; }
+  .hero p.lead{ font-size:18px; max-width:480px; margin-bottom:34px; }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-art{
+    position:relative; height:340px;
+  }
+  .hero-art svg{ width:100%; height:100%; }
+  .draw-path{
+    stroke-dasharray:1400;
+    stroke-dashoffset:1400;
+    animation:draw 2.4s ease forwards .3s;
+  }
+  @media (prefers-reduced-motion: reduce){ .draw-path{ animation:none; stroke-dashoffset:0; } }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+
+  .trust-strip{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:26px 0; margin-top:40px;
+  }
+  .trust-row{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:16px;
+  }
+  .trust-row p{ font-size:14px; color:var(--muted); margin:0; }
+  .tag-list{ display:flex; gap:10px; flex-wrap:wrap; }
+  .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:12px;
+    border:1px solid var(--line); padding:6px 12px; border-radius:999px; color:var(--ink);
+  }
+  html[dir="rtl"] .tag{ font-family:'Cairo',monospace; }
+
+  /* ---------- SERVICES ---------- */
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head p{ font-size:16.5px; }
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  @media(max-width:900px){ .services-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:600px){ .services-grid{ grid-template-columns:1fr; } }
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(16,21,28,0.08); }
+  .card-icon{
+    width:42px; height:42px; border-radius:10px; margin-bottom:18px;
+    background:var(--sand); display:flex; align-items:center; justify-content:center;
+  }
+  .card h3{ font-size:19px; margin-bottom:10px; font-weight:700; }
+  .card p{ font-size:14.5px; }
+
+  /* ---------- APPROACH (dark) ---------- */
+  .approach{ background:var(--ink); color:var(--sand); }
+  .approach .section-head p{ color:rgba(241,234,217,0.7); }
+  .approach h2{ color:var(--sand); }
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+  @media(max-width:860px){ .steps{ grid-template-columns:1fr; } }
+  .step{ border-top:2px solid var(--copper); padding-top:20px; }
+  .step .num{ font-family:'IBM Plex Mono',monospace; color:var(--copper); font-size:13px; letter-spacing:.1em; }
+  html[dir="rtl"] .step .num{ font-family:'Cairo',monospace; }
+  .step h3{ color:var(--sand); font-size:20px; margin:10px 0 10px; }
+  .step p{ color:rgba(241,234,217,0.75); font-size:14.5px; }
+
+  /* ---------- WORK ---------- */
+  .work-list{ display:flex; flex-direction:column; gap:0; }
+  .work-item{
+    display:grid; grid-template-columns:70px 1.4fr 1fr; gap:26px; align-items:center;
+    padding:30px 0; border-bottom:1px solid var(--line);
+  }
+  @media(max-width:760px){ .work-item{ grid-template-columns:1fr; gap:10px; } }
+  .work-item .idx{ font-family:'IBM Plex Mono',monospace; color:var(--copper); font-size:14px; }
+  html[dir="rtl"] .work-item .idx{ font-family:'Cairo',monospace; }
+  .work-item h3{ font-size:21px; margin-bottom:8px; }
+  .work-item p{ font-size:14.5px; }
+  .work-tags{ display:flex; gap:8px; flex-wrap:wrap; }
+  .note{
+    margin-top:22px; font-size:13px; color:var(--muted); font-style:italic;
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media(max-width:800px){ .testi-grid{ grid-template-columns:1fr; } }
+  .testi{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:32px;
+  }
+  .testi p.quote{ font-size:17px; color:var(--ink); margin-bottom:22px; }
+  .testi .who{ font-size:13.5px; color:var(--muted); font-weight:600; }
+
+  /* ---------- CTA / CONTACT ---------- */
+  .cta{ background:var(--teal); color:var(--sand); border-radius:24px; padding:64px 48px; }
+  @media(max-width:700px){ .cta{ padding:44px 24px; } }
+  .cta h2{ color:var(--sand); margin-bottom:12px; }
+  .cta p{ color:rgba(241,234,217,0.8); margin-bottom:34px; max-width:520px; }
+  .cta-grid{ display:grid; grid-template-columns:1fr 1fr; gap:50px; }
+  @media(max-width:760px){ .cta-grid{ grid-template-columns:1fr; } }
+  form{ display:flex; flex-direction:column; gap:14px; }
+  label{ font-size:13px; font-weight:600; color:rgba(241,234,217,0.85); }
+  input, textarea{
+    background:rgba(241,234,217,0.08);
+    border:1px solid rgba(241,234,217,0.3);
+    border-radius:10px; padding:12px 14px; color:var(--sand); font-family:inherit; font-size:14.5px;
+  }
+  input::placeholder, textarea::placeholder{ color:rgba(241,234,217,0.45); }
+  textarea{ min-height:100px; resize:vertical; }
+  .cta form .btn{ background:var(--copper); border-color:var(--copper); margin-top:6px; align-self:flex-start; }
+  .cta form .btn:hover{ background:var(--sand); color:var(--ink); border-color:var(--sand); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:60px 0 32px; }
+  .foot-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:36px; border-bottom:1px solid var(--line); }
+  .foot-links{ display:flex; gap:40px; flex-wrap:wrap; }
+  .foot-col h4{ font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:14px; }
+  .foot-col a{ display:block; font-size:14.5px; margin-bottom:9px; color:var(--ink); opacity:.85; }
+  .foot-col a:hover{ color:var(--teal); }
+  .foot-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:22px; flex-wrap:wrap; gap:10px; }
+  .foot-bottom p{ font-size:13px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="logo-mark">IT</span>
+      <span class="t-en">ITabid Technology</span>
+      <span class="t-ar" dir="rtl">آيتابيد تكنولوجي</span>
+    </div>
+    <nav class="navlinks">
+      <a href="#services"><span class="t-en">Services</span><span class="t-ar" dir="rtl">خدماتنا</span></a>
+      <a href="#approach"><span class="t-en">Approach</span><span class="t-ar" dir="rtl">منهجنا</span></a>
+      <a href="#work"><span class="t-en">Work</span><span class="t-ar" dir="rtl">أعمالنا</span></a>
+      <a href="#contact"><span class="t-en">Contact</span><span class="t-ar" dir="rtl">تواصل معنا</span></a>
+    </nav>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN / عربي</button>
+      <a href="#contact" class="btn">
+        <span class="t-en">Build Today</span><span class="t-ar" dir="rtl">لنبدأ اليوم</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow t-en">IT SOLUTIONS, BILINGUAL BY DESIGN</span>
+        <span class="eyebrow t-ar" dir="rtl">حلول تقنية معلومات، ثنائية اللغة بالتصميم</span>
+        <h1 class="t-en">IT solutions, delivered fluently in Arabic and English.</h1>
+        <h1 class="t-ar" dir="rtl">حلول تقنية معلومات، نقدّمها بطلاقة بالعربية والإنجليزية.</h1>
+        <p class="lead t-en">ITabid Technology builds websites, mobile apps, and IT infrastructure for businesses that serve both Arabic- and English-speaking markets — without losing precision in translation.</p>
+        <p class="lead t-ar" dir="rtl">آيتابيد تكنولوجي تبني مواقع وتطبيقات جوال وبنية تحتية تقنية للشركات التي تخدم أسواقًا ناطقة بالعربية والإنجليزية، دون أن تفقد الدقة في الترجمة.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn">
+            <span class="t-en">Start a project</span><span class="t-ar" dir="rtl">ابدأ مشروعك</span>
+          </a>
+          <a href="#work" class="btn outline">
+            <span class="t-en">See our work</span><span class="t-ar" dir="rtl">شاهد أعمالنا</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="draw-path" d="M10 260 C 60 260, 60 180, 110 180 C 150 180, 150 240, 190 240 C 220 240, 220 100, 260 100 C 290 100, 290 200, 320 200 L 340 200 C 350 160, 370 160, 380 200 C 388 220, 400 220, 410 200"
+            stroke="#1F5C56" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="110" cy="180" r="5" fill="#C97A3D"/>
+          <circle cx="260" cy="100" r="5" fill="#C97A3D"/>
+          <circle cx="380" cy="200" r="5" fill="#C97A3D"/>
+        </svg>
+      </div>
+    </div>
+    <div class="wrap trust-strip">
+      <div class="trust-row">
+        <p class="t-en">Working across web, mobile, networks, and cloud —</p>
+        <p class="t-ar" dir="rtl">نعمل عبر الويب، الجوال، الشبكات، والسحابة —</p>
+        <div class="tag-list">
+          <span class="tag">React / React Native</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Cloud & DevOps</span>
+          <span class="tag">Arabic RTL / i18n</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow t-en">SERVICES</span>
+        <span class="eyebrow t-ar" dir="rtl">الخدمات</span>
+        <h2 class="t-en">Everything your business needs, technically.</h2>
+        <h2 class="t-ar" dir="rtl">كل ما تحتاجه شركتك، من الناحية التقنية.</h2>
+        <p class="t-en">From a single landing page to a full network overhaul — one team, two languages.</p>
+        <p class="t-ar" dir="rtl">من صفحة تعريفية بسيطة إلى إعادة هيكلة شاملة للشبكة — فريق واحد، ولغتان.</p>
+      </div>
+      <div class="services-grid">
+        <div class="card">
+          <div class="card-icon">🌐</div>
+          <h3 class="t-en">Web Development</h3>
+          <h3 class="t-ar" dir="rtl">تطوير المواقع</h3>
+          <p class="t-en">Custom websites and web apps built for performance, SEO, and scale.</p>
+          <p class="t-ar" dir="rtl">مواقع وتطبيقات ويب مخصصة، مبنية للأداء وتحسين محركات البحث والنمو.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3 class="t-en">Mobile App Development</h3>
+          <h3 class="t-ar" dir="rtl">تطوير تطبيقات الجوال</h3>
+          <p class="t-en">Native and cross-platform apps for iOS and Android, with full RTL support.</p>
+          <p class="t-ar" dir="rtl">تطبيقات أصلية ومتعددة المنصات لنظامي iOS وAndroid، بدعم كامل للعربية.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🖧</div>
+          <h3 class="t-en">IT Support & Networks</h3>
+          <h3 class="t-ar" dir="rtl">الدعم التقني والشبكات</h3>
+          <p class="t-en">Reliable systems, network infrastructure, and responsive on-site support.</p>
+          <p class="t-ar" dir="rtl">أنظمة وبنية شبكية موثوقة، ودعم فني سريع الاستجابة.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">☁️</div>
+          <h3 class="t-en">Cloud & DevOps</h3>
+          <h3 class="t-ar" dir="rtl">السحابة والعمليات التقنية</h3>
+          <p class="t-en">Migration, automation, and managed cloud operations that scale with you.</p>
+          <p class="t-ar" dir="rtl">ترحيل، وأتمتة، وإدارة سحابية متكاملة تنمو مع أعمالك.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3 class="t-en">Cybersecurity</h3>
+          <h3 class="t-ar" dir="rtl">الأمن السيبراني</h3>
+          <p class="t-en">Protecting your infrastructure, data, and users from real-world threats.</p>
+          <p class="t-ar" dir="rtl">حماية بنيتك التحتية وبياناتك ومستخدميك من التهديدات الحقيقية.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h3 class="t-en">UI/UX Design</h3>
+          <h3 class="t-ar" dir="rtl">تصميم واجهات المستخدم</h3>
+          <p class="t-en">Interfaces people enjoy using — designed correctly in both directions.</p>
+          <p class="t-ar" dir="rtl">واجهات يحب المستخدمون استخدامها، ومصممة بشكل صحيح في كلا الاتجاهين.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach" class="approach">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow t-en">HOW WE WORK</span>
+        <span class="eyebrow t-ar" dir="rtl">كيف نعمل</span>
+        <h2 class="t-en">A process built for clarity, in either language.</h2>
+        <h2 class="t-ar" dir="rtl">منهج عمل واضح، بأي لغة تفضّلها.</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="num">01</span>
+          <h3 class="t-en">Discover</h3>
+          <h3 class="t-ar" dir="rtl">الاكتشاف</h3>
+          <p class="t-en">We learn your business, your users, and the language they think in.</p>
+          <p class="t-ar" dir="rtl">نتعرّف على عملك ومستخدميك واللغة التي يفكرون بها.</p>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <h3 class="t-en">Build</h3>
+          <h3 class="t-ar" dir="rtl">البناء</h3>
+          <p class="t-en">Agile delivery with weekly check-ins, in Arabic or English — your choice.</p>
+          <p class="t-ar" dir="rtl">تسليم مرن مع مراجعات أسبوعية، بالعربية أو الإنجليزية حسب رغبتك.</p>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <h3 class="t-en">Support</h3>
+          <h3 class="t-ar" dir="rtl">الدعم</h3>
+          <p class="t-en">Ongoing maintenance, monitoring, and on-call help after launch.</p>
+          <p class="t-ar" dir="rtl">صيانة مستمرة، ومراقبة، ودعم عند الحاجة بعد الإطلاق.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK (sample placeholders) -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow t-en">SELECTED WORK</span>
+        <span class="eyebrow t-ar" dir="rtl">أعمال مختارة</span>
+        <h2 class="t-en">Projects built for real, bilingual users.</h2>
+        <h2 class="t-ar" dir="rtl">مشاريع بُنيت لمستخدمين حقيقيين وثنائيي اللغة.</h2>
+      </div>
+      <div class="work-list">
+        <!-- Sample project — replace with a real case study and screenshot -->
+        <div class="work-item">
+          <span class="idx">01</span>
+          <div>
+            <h3 class="t-en">Community Giving Platform</h3>
+            <h3 class="t-ar" dir="rtl">منصة عطاء مجتمعية</h3>
+            <p class="t-en">Mobile donations app with full Arabic RTL support for a nonprofit network.</p>
+            <p class="t-ar" dir="rtl">تطبيق تبرعات للجوال بدعم كامل للعربية لشبكة منظمات غير ربحية.</p>
+          </div>
+          <div class="work-tags">
+            <span class="tag">React Native</span><span class="tag">Firebase</span><span class="tag">RTL</span>
+          </div>
+        </div>
+        <!-- Sample project — replace with a real case study and screenshot -->
+        <div class="work-item">
+          <span class="idx">02</span>
+          <div>
+            <h3 class="t-en">SME Storefront</h3>
+            <h3 class="t-ar" dir="rtl">متجر إلكتروني</h3>
+            <p class="t-en">Bilingual e-commerce site for a growing retailer, launched in under 8 weeks.</p>
+            <p class="t-ar" dir="rtl">موقع تجارة إلكترونية ثنائي اللغة لتاجر تجزئة متنامٍ، أُطلق خلال أقل من ٨ أسابيع.</p>
+          </div>
+          <div class="work-tags">
+            <span class="tag">Next.js</span><span class="tag">Stripe</span><span class="tag">i18n</span>
+          </div>
+        </div>
+        <!-- Sample project — replace with a real case study and screenshot -->
+        <div class="work-item">
+          <span class="idx">03</span>
+          <div>
+            <h3 class="t-en">Network Overhaul</h3>
+            <h3 class="t-ar" dir="rtl">إعادة تصميم الشبكة</h3>
+            <p class="t-en">Office-wide network redesign and ongoing support contract for a logistics firm.</p>
+            <p class="t-ar" dir="rtl">إعادة هيكلة شبكة المكتب بالكامل، وعقد دعم مستمر لشركة لوجستية.</p>
+          </div>
+          <div class="work-tags">
+            <span class="tag">Infrastructure</span><span class="tag">Security</span><span class="tag">Support</span>
+          </div>
+        </div>
+      </div>
+      <p class="note t-en">* Sample projects shown above — swap in your real case studies, screenshots, and client names.</p>
+      <p class="note t-ar" dir="rtl">* المشاريع أعلاه نماذج توضيحية — استبدلها بمشاريعك الحقيقية وصور فعلية وأسماء عملاء.</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow t-en">CLIENTS</span>
+        <span class="eyebrow t-ar" dir="rtl">آراء العملاء</span>
+        <h2 class="t-en">What partners say about working with us.</h2>
+        <h2 class="t-ar" dir="rtl">ماذا يقول شركاؤنا عن العمل معنا.</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <p class="quote t-en">"They delivered in both languages without losing a single detail — communication was effortless throughout."</p>
+          <p class="quote t-ar" dir="rtl">"قدّموا العمل باللغتين دون أن تضيع أي تفاصيل — كان التواصل سلسًا طوال الوقت."</p>
+          <p class="who">— Client Name, Role <span style="opacity:.6">(sample quote)</span></p>
+        </div>
+        <div class="testi">
+          <p class="quote t-en">"Our network hasn't gone down once since the overhaul. Support responds the same day, every time."</p>
+          <p class="quote t-ar" dir="rtl">"شبكتنا لم تتعطل ولو لمرة منذ إعادة الهيكلة. فريق الدعم يستجيب في نفس اليوم دائمًا."</p>
+          <p class="who">— Client Name, Role <span style="opacity:.6">(sample quote)</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="cta">
+        <div class="cta-grid">
+          <div>
+            <h2 class="t-en">Ready to build?</h2>
+            <h2 class="t-ar" dir="rtl">جاهز نبدأ؟</h2>
+            <p class="t-en">Tell us what you're building — in Arabic or English — and we'll get back to you within one business day.</p>
+            <p class="t-ar" dir="rtl">أخبرنا بما تريد بناءه — بالعربية أو الإنجليزية — وسنرد عليك خلال يوم عمل واحد.</p>
+            <p style="color:rgba(241,234,217,0.75); font-size:14.5px;">
+              <span class="t-en">hello@itabidtech.com · +256 000 000 000</span>
+              <span class="t-ar" dir="rtl">hello@itabidtech.com · ٠٠٠٠٠٠٠٠٠٠+</span>
+            </p>
+          </div>
+          <form onsubmit="event.preventDefault(); alert(document.documentElement.dir==='rtl' ? 'شكرًا! سنعاود التواصل قريبًا.' : 'Thanks! We will be in touch soon.');">
+            <div>
+              <label class="t-en">Full name</label>
+              <label class="t-ar" dir="rtl">الاسم الكامل</label>
+              <input type="text" required placeholder="Full name">
+            </div>
+            <div>
+              <label class="t-en">Email</label>
+              <label class="t-ar" dir="rtl">البريد الإلكتروني</label>
+              <input type="email" required placeholder="you@company.com">
+            </div>
+            <div>
+              <label class="t-en">What do you need help with?</label>
+              <label class="t-ar" dir="rtl">بماذا تحتاج مساعدتنا؟</label>
+              <textarea placeholder="Tell us about your project"></textarea>
+            </div>
+            <button type="submit" class="btn">
+              <span class="t-en">Send message</span><span class="t-ar" dir="rtl">إرسال الرسالة</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="logo"><span class="logo-mark">IT</span>
+        <span class="t-en">ITabid Technology</span>
+        <span class="t-ar" dir="rtl">آيتابيد تكنولوجي</span>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4 class="t-en">Company</h4><h4 class="t-ar" dir="rtl">الشركة</h4>
+          <a href="#services"><span class="t-en">Services</span><span class="t-ar" dir="rtl">خدماتنا</span></a>
+          <a href="#work"><span class="t-en">Work</span><span class="t-ar" dir="rtl">أعمالنا</span></a>
+          <a href="#contact"><span class="t-en">Contact</span><span class="t-ar" dir="rtl">تواصل معنا</span></a>
+        </div>
+        <div class="foot-col">
+          <h4 class="t-en">Legal</h4><h4 class="t-ar" dir="rtl">قانوني</h4>
+          <a href="#"><span class="t-en">Privacy Policy</span><span class="t-ar" dir="rtl">سياسة الخصوصية</span></a>
+          <a href="#"><span class="t-en">Terms & Conditions</span><span class="t-ar" dir="rtl">الشروط والأحكام</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="t-en">© 2026 ITabid Technology. All rights reserved.</p>
+      <p class="t-ar" dir="rtl">© ٢٠٢٦ آيتابيد تكنولوجي. جميع الحقوق محفوظة.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleLang(){
+    const html = document.documentElement;
+    const isAr = html.getAttribute('dir') === 'rtl';
+    html.setAttribute('dir', isAr ? 'ltr' : 'rtl');
+    html.setAttribute('lang', isAr ? 'en' : 'ar');
+  }
+</script>
+
+</body>
 </html>
